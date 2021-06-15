@@ -58,12 +58,17 @@ def visualize(image, bboxes, class_names):
 
 
 
+
+
 folder = os.getcwd()
 destination = os.path.join(folder, 'Augmented Files')
 
-files = [f for f in os.listdir(folder) if os.path.isfile(os.path.join(folder, f)) and f[0] != '.']
+if not os.path.exists(destination):
+    os.makedirs(destination)
+
+files = [f for f in os.listdir(folder) if os.path.isfile(os.path.join(folder, f)) and f[-3:] == 'jpg']
 files = list(set([f[:-4] for f in files]))
-files.pop(files.index('classes'))
+
 
 
 for img in files:
